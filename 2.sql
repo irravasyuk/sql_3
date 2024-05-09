@@ -100,9 +100,9 @@
 --не враховувати студентів  яким менше 25 років
 SELECT group_name, AVG(average_grade) AS group_average_grade
 FROM StudentsGrades
+WHERE EXTRACT(YEAR FROM AGE(CURRENT_DATE, date_of_birth)) > 25 
 GROUP BY group_name
-HAVING EXTRACT(YEAR FROM AGE(CURRENT_DATE, date_of_birth)) > 25 
-    AND AVG(average_grade) BETWEEN 70 AND 80
+HAVING AVG(average_grade) BETWEEN 70 AND 80
 
 
 
