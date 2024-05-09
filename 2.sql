@@ -82,11 +82,27 @@
 --GROUP BY group_name
 
 
+--вивести середню оцінку по групах, лише для груп 
+--де кількість студентів більша 3
+--SELECT group_name, AVG(average_grade) AS group_average_grade
+--FROM StudentsGrades
+--WHERE group_name IN (
+--	SELECT group_name
+--	FROM StudentsGrades
+--	GROUP BY group_name
+--	HAVING COUNT(*) > 3
+--)
+--GROUP BY group_name
 
 
 
-
-
+--вивести ті групи середня оцінка яких лежить в межах 70-80, 
+--не враховувати студентів  яким менше 25 років
+SELECT group_name, AVG(average_grade) AS group_average_grade
+FROM StudentsGrades
+GROUP BY group_name
+HAVING EXTRACT(YEAR FROM AGE(CURRENT_DATE, date_of_birth)) > 25 
+    AND AVG(average_grade) BETWEEN 70 AND 80
 
 
 
